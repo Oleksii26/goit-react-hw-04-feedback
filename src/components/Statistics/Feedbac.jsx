@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Statistics } from './Statistics'
 import { Notification } from './Notification'
-import { Component, useState } from 'react'
+import { useState } from 'react'
 
 export const Feedbac = () => {
     const [feedback, setFeedback] = useState({
