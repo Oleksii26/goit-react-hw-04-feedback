@@ -1,45 +1,32 @@
 import css from './Statistics.module.css'
 import React from 'react'
-import { FeedbackOptions } from './FeedbackOptions'
+
 import { Statistics } from './Statistics'
 import { Notification } from './Notification'
+import { Component, useState } from 'react'
 
+export const Feedbac = () => {
+    const [feedback, setFeedback] = useState({
+        good: 0,
+        neutral: 0,
+        bad: 0,
+    })
 
+    const [visible, setVisible] = useState(false)
 
-class Feedbac extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            good: 0,
-            neutral: 0,
-            bad: 0,
-            visible: false,
-        }
-    }
-
-    onIncrement = (event) => {
-        
-        this.setState((prevState) => {
-            
-            return {
-                ...prevState,
-                visible: true,
-                [event.target.name]: prevState[event.target.name] + 1
-            }
+    const onIncrement = (type) => {
+        setFeedback({
+            ...feedback,
+            [type]: feedback[type] + 1
         })
+        setVisible(true)
     }
 
-    render() {
-
-        return <div>
-            <h3 className={css.title}>{this.props.title}</h3>
-            <FeedbackOptions options={this.onIncrement} />
-           {this.state.visible && <Statistics good={this.state.good}
-                    neutral={this.state.neutral}
-                    bad={this.state.bad} />  }                   
-            {this.state.visible || <Notification />}
-        </div>
-    }
+    return (<div>
+        <h3 className={css.title}>Please leave feedback</h3>
+        {['good', 'neutral', 'bad'].map(e => <button key={e} className={css.btn} onClick={() => onIncrement(e)}>{e}</button>)}
+        {visible && <Statistics option={feedback} />}
+        {visible || <Notification />}
+    </div>)
 }
-export { Feedbac }
+
