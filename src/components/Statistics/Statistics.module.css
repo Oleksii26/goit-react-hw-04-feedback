@@ -1,0 +1,36 @@
+body {
+    padding: 30px;
+}
+
+.title {
+    color: blue;
+}
+
+.list {
+
+    list-style: none;
+}
+
+.isHidden {
+    display: none;
+}
+
+.btn__list {
+    display: flex;
+}
+
+.btn {
+    margin-left: 10px;
+    background-color: gray;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color:black;
+    color: white;
+   
+}
